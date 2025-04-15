@@ -64,26 +64,26 @@
 
 
 #  Problem 4 Grocerry List Problem
-import sys
-grocerry_dict = dict()
-while True:
-    try:
-        grocerry_item = input(" ").lower().strip()
-        grocerry_dict[grocerry_item] = grocerry_dict.get(grocerry_item,0) + 1
+# import sys
+# grocerry_dict = dict()
+# while True:
+#     try:
+#         grocerry_item = input(" ").lower().strip()
+#         grocerry_dict[grocerry_item] = grocerry_dict.get(grocerry_item,0) + 1
 
 
-    except EOFError:
-        sys.exit(0)
+#     except EOFError:
+#         sys.exit(0)
 
 
-    except KeyboardInterrupt:
-        for item,count in sorted(grocerry_dict.items()):
-            print(f"{count} {item.upper()}")
-        sys.exit(0)
+#     except KeyboardInterrupt:
+#         for item,count in sorted(grocerry_dict.items()):
+#             print(f"{count} {item.upper()}")
+#         sys.exit(0)
     
 
-    else:
-       continue
+#     else:
+#        continue
 
 
    
