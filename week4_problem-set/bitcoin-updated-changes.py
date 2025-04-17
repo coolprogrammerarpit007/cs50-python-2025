@@ -12,12 +12,6 @@ def main():
     API_TOKEN = "b97d273322d4e65d56e4b639c92a42c6a1ea6a40389ca9256a613951b493b982"
     try:
         bitcoin_number = float(sys.argv[1])
-        # url = "https://rest.coincap.io/v3/assets"
-        # headers = {
-        #     "Content-Type":"application/json",
-        #     "token_type": f"Bearer {API_TOKEN}",
-        # }
-        # response = requests.get(url,headers=headers)
         bitcoin_price = None
         response = requests.get("https://rest.coincap.io/v3/assets",{"apiKey":API_TOKEN})
         response.raise_for_status()
@@ -33,6 +27,8 @@ def main():
 
     else:
         data = response.json()
+        print(data)
+        exit(0)
         bitcoin_price = float(data["data"][0]["priceUsd"])
 
 
