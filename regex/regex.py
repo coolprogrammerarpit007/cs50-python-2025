@@ -2,7 +2,7 @@ import re
 
 email = input("Enter your email? ").strip()
 
-if re.search(r"^\w+@[^@]+\.edu$",email,flags=re.IGNORECASE):
+if re.search(r"^\w+@(\w+\.)?\w+\.edu$",email,flags=re.IGNORECASE):
     print("Valid Email-Id")
 else:
     print("Invalid Email-Id")
