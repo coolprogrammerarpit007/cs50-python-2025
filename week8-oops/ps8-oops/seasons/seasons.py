@@ -1,45 +1,46 @@
-from datetime import date,datetime
-from num2words import num2words
-# import datetime
+from datetime import date
 import re
+import inflect
 import sys
-import calendar
+
+#  function to check if date is valid or not.
+
+def is_valid_date(date_str):
+    if re.search(r'[0-9]{4}-[0-9]{2}-[0-9]{2}',date_str):
+        year,month,day = date_str.split("-")
+        if int(month) > 12 or int(day) > 31:
+            return False
+        else:
+            return True
+    else:    
+        return False
 
 
-#  check if the date is valid or not.
+#  method to get the days b/w two dates.
 
-def is_valid_date(date):
-    pattern = r"^\d{4}-\d{2}-\d{2}$"
-    if re.search(pattern,date):
-        return True
-    
-    return False
+def get_minutes(start_year):
+    start_year = date.fromisoformat(start_year)
+    today = date.today()
+
+    days = (today - start_year).days
+    minutes = days * 24 * 60
+    return minutes
 
 
-def leap_days(start):
-    start_date = date.fromisoformat(start)
-    end = date.today()
-    end_date = date.fromisoformat(str(end))
-    remaining_days = (end_date - start_date).days
-    return (remaining_days)
-
-def numbers_to_words(number):
-    mins_in_words = (num2words(number)).split(' ')
-    formatted_words = ""
-    for word in mins_in_words:
-        if word != "and":
-            formatted_words += word + " "
-
-    return formatted_words.capitalize()
 def main():
-    birth_date = input("Enter Date: ")
+    birth_date = input("Date of Birth: ")
     if is_valid_date(birth_date):
-        days_in_the_year = leap_days(birth_date)
-        minutes_in_year = int(days_in_the_year) * 24 * 60
-        print(f"{numbers_to_words(minutes_in_year)} minutes")
+        minutes_total = get_minutes(birth_date)
+        p = inflect.engine()
+        in_words = p.number_to_words(minutes_total, andword="")
+        in_words = in_words.capitalize()
+        return f"{in_words} minutes"
+
     else:
+        print("Invalid date")
         sys.exit(1)
-    
+
 
 if __name__ == "__main__":
-    main()
+    print(main())
+

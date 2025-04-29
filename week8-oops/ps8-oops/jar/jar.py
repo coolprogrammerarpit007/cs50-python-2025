@@ -18,7 +18,7 @@ class Jar:
         return f"{self.size}"
     
     def deposit(self,n):
-        if self.capacity < n:
+        if self.size > self.capacity:
             raise ValueError
         
         self.size += n
